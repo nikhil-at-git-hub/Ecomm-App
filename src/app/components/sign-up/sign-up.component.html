@@ -1,0 +1,30 @@
+<div class="body">
+    <h2 class="text-center">Sign Up</h2>
+
+
+
+    <form #n="ngForm" (ngSubmit)="signup(n)">
+        <input ngModel name="name" type="text" #name="ngModel" class=  "form-control" placeholder="Name" required><br>
+        <div class="alert alert-danger" *ngIf="name.invalid && name.touched">Name is required</div>
+
+        <input ngModel name="email" type="text" class=  "form-control" placeholder="Email" required><br>
+
+        <input ngModel name="password" #password="ngModel" type="password" class=  "form-control" placeholder="Password" required><br>
+
+        <div class="alert alert-danger " *ngIf="password.errors?.required && password.touched">Password is required</div>
+
+        <input ngModel name="confirm_password" #confirmpassword type="password" class=  "form-control" placeholder="Confirm Password"><br>
+
+        <div class="alert alert-danger"  *ngIf="confirmpassword.errors?.required && confirmpassword.touched">Confirm password is required</div>
+        
+        <div class="alert alert-danger"  *ngIf="password.value !== confirmpassword.value && confirmpassword.touched" >password are not identical</div>
+
+
+        <input ngModel name="address" type="text" class=  "form-control" placeholder="Address" required><br>
+
+        <button type="submit" class="btn btn-primary" [disabled]="n.invalid">Create an account</button>
+    </form>
+</div>
+
+
+<div class="alert alert-danger" *ngIf="errorMsg"> {{ errorMsg}} </div>
